@@ -1,0 +1,14 @@
+name: triggers
+on:
+    push:
+        branches:
+            - 'main'
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+  trigger-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name:
+        run: echo 'hello world'
