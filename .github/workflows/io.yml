@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: hello
         id: set-var
-        shell: pytyon
+        shell: python
         run: |
           import os
           with open(os.environ[]'GITHUB_OUTPUT,'a') as f:
