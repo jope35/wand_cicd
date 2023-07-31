@@ -1,24 +1,27 @@
 name: bug_label
-on:
-  issue_comment:
-    types: [created, edited]
+on: issue_comment
 
 permissions:
-  contents: read
   issues: write
   pull-requests: write
 
 jobs:
   bug:
-    if: ${{ github.event.issue.pull_request }}
+    if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/bug')
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: run script
+      - name: install dependencies
+        run: pip install ghapi
+
+      - name: Make a comment
+        shell: python
         run: |
-          pip install ghapi
-          python .github/scripts/convert_to_bug.py
+          import os
+          from ghapi.core import GhApi
+          owner,repo = os.environ['REPO'].split('/')
+          api = GhApi(owner=owner, repo=repo)
+          api.issues.add_labels(issue_number=os.environ['NUMBER'], labels=['bug'])
         env:
+          NUMBER: ${{ github.event.issue.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
