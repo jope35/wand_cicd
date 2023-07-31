@@ -16,7 +16,7 @@ jobs:
             - name: make a comment
               shell: python
               run: |
-                  import ios
+                  import os
                   from ghapi.core import GhApi
                   owner,repo = os.environ['REPO'].split('/')
                   api = GhApi(owner=owner, repo=repo)
