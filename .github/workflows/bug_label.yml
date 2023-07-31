@@ -18,7 +18,7 @@ jobs:
       - name: run script
         run: |
           pip install ghapi
-          python ../scripts/convert_to_bug.py
+          python .github/scripts/convert_to_bug.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
