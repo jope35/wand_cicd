@@ -24,7 +24,7 @@ jobs:
           import re
           body = os.environ['BODY']
           regex = r"/wandb (\S+)"
-          matches = re.find(regex, body)
+          matches = re.search(regex, body)
           print(matches[0])
           print(matches)
         env:
