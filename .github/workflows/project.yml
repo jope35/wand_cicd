@@ -40,7 +40,7 @@ jobs:
       - name: Generate the comparison report
         if: steps.get-runid-value.outputs.VAL_FOUND == 'true'
         id: wandb-report
-        run: python3 ./.github/scripts/wandb.py
+        run: python3 ./.github/scripts/cli_wandb.py
         env:
           WANDB_ENTITY: coffee_pot
           WANDB_PROJECT: cicd-quickstart
