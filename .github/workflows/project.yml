@@ -22,8 +22,10 @@ jobs:
         run: |
           import os
           import re
-          body = os.environ['github.event.comment.body']
+          body = os.environ['BODY']
           regex = r"/wandb (\S+)"
           matches = re.find(regex, body)
           print(matches[0])
           print(matches)
+        env:
+          BODY: github.event.comment.body
