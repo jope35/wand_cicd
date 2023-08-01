@@ -6,7 +6,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  bug:
+  wandb_trigger:
     if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/wandb')
     runs-on: ubuntu-latest
     steps:
@@ -18,4 +18,4 @@ jobs:
         run: echo "pass"
 
       - name: get the run_id from comment
-        run: echo "::set-output name=text::$(echo ${{ github.event.comment.body }} | sed 's/.*\/wand //')"
+        run: WANDB_RUN_ID=$(echo ${{ github.event.comment.body }} | sed 's/.*\/wand //') >> $WANDB_RUN_ID
