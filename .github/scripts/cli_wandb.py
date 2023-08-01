@@ -14,7 +14,7 @@ def get_baseline_run(entity, project, tag="baseline"):
     return runs[0]
 
 
-def compare_runs(entity, project, tag, run_id=None):
+def compare_runs(entity=None, project=None, tag=None, run_id=None):
     "Compare the current run to the baseline run."
 
     # Allow you to override the args with env variables
