@@ -18,4 +18,12 @@ jobs:
         run: echo "pass"
 
       - name: get the run_id from comment
-        run: WANDB_RUN_ID=$(echo ${{ github.event.comment.body }} | sed 's/.*\/wand //') >> $WANDB_RUN_ID
+        shell: python
+        run: |
+          import os
+          import re
+          body = os.environ['github.event.comment.body']
+          regex = r"/wandb (\S+)"
+          matches = re.find(regex, body)
+          print(matches[0])
+          print(matches)
