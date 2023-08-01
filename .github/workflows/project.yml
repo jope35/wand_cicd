@@ -25,7 +25,7 @@ jobs:
           body = os.environ['BODY']
           regex = r"/wandb (\S+)"
           matches = re.search(regex, body)
-          print(matches[0])
           print(matches)
+          print(matches[0])
         env:
-          BODY: github.event.comment.body
+          BODY: ${{github.event.comment.body}}
