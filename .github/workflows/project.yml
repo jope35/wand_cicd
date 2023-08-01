@@ -13,8 +13,12 @@ jobs:
       - name: Get repo contents
         uses: actions/checkout@v3
 
-      - name: install dependencies
-        run: pip install ghapi wandb
+      - name: Set up Python & install deps
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          cache: "pip"
+      - run: pip install ghapi wandb
 
       - name: Parse value from the command
         id: get-runid-value
