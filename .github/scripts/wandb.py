@@ -5,7 +5,7 @@ import wandb.apis.reports as wr
 assert os.getenv("WANDB_API_KEY"), "You must set the WANDB_API_KEY environment variable"
 
 
-def get_baseline_run(entity=entity, project=project, tag="baseline"):
+def get_baseline_run(entity, project, tag="baseline"):
     "Get the baseline run from the project using tags"
 
     api = wandb.Api()
@@ -14,7 +14,7 @@ def get_baseline_run(entity=entity, project=project, tag="baseline"):
     return runs[0]
 
 
-def compare_runs(entity=WANDB_ENTITY, project=WANDB_PROJECT, tag=tag, run_id=None):
+def compare_runs(entity, project, tag, run_id=None):
     "Compare the current run to the baseline run."
 
     # Allow you to override the args with env variables
