@@ -1,0 +1,21 @@
+name: chatops
+on: issue_comment
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  bug:
+    if: (github.event.issue.pull_request != null) && contains(github.event.comment.body, '/wandb')
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: pip install ghapi wandb
+
+      - name: fetch baseline run
+        id: baseline
+        run: echo "pass"
+
+      - name: get the run_id from comment
+        run: echo "::set-output name=text::$(echo ${{ github.event.comment.body }} | sed 's/.*\/wand //')"
